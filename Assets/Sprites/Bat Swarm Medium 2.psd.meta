@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 350e1bf5207caa84c93583d1d0392fd6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4261027001866924228
+    second: Bat Swarm Medium 2_0
+  - first:
+      213: 8730875899029338632
+    second: Bat Swarm Medium 2_1
+  - first:
+      213: 8479524143270420857
+    second: Bat Swarm Medium 2_2
+  - first:
+      213: 2240718539797182498
+    second: Bat Swarm Medium 2_3
+  - first:
+      213: 4440512500522338145
+    second: Bat Swarm Medium 2_4
+  - first:
+      213: 5218245236555093165
+    second: Bat Swarm Medium 2_5
+  - first:
+      213: 3242819896290948923
+    second: Bat Swarm Medium 2_6
+  - first:
+      213: -4092566265339659071
+    second: Bat Swarm Medium 2_7
+  - first:
+      213: -2575156470650966307
+    second: Bat Swarm Medium 2_8
+  - first:
+      213: -1698464676641652785
+    second: Bat Swarm Medium 2_9
+  - first:
+      213: 2593312203564502603
+    second: Bat Swarm Medium 2_10
+  - first:
+      213: -6896957436790614582
+    second: Bat Swarm Medium 2_11
+  - first:
+      213: -3903033950087743749
+    second: Bat Swarm Medium 2_12
+  - first:
+      213: 3009854310361995893
+    second: Bat Swarm Medium 2_13
+  - first:
+      213: -6901519877210058259
+    second: Bat Swarm Medium 2_14
+  - first:
+      213: 1205190060927920723
+    second: Bat Swarm Medium 2_15
+  - first:
+      213: 92042901010546264
+    second: Bat Swarm Medium 2_16
+  - first:
+      213: -5508167252573917388
+    second: Bat Swarm Medium 2_17
+  - first:
+      213: 7972899083517510829
+    second: Bat Swarm Medium 2_18
+  - first:
+      213: -6638769510948794672
+    second: Bat Swarm Medium 2_19
+  - first:
+      213: -8202720235246957492
+    second: Bat Swarm Medium 2_20
+  - first:
+      213: 4171248493193857706
+    second: Bat Swarm Medium 2_21
+  - first:
+      213: 6501826624892487330
+    second: Bat Swarm Medium 2_22
+  - first:
+      213: -9146419046208431703
+    second: Bat Swarm Medium 2_23
+  - first:
+      213: 5831561402442223568
+    second: Bat Swarm Medium 2_24
+  - first:
+      213: 2415669487466431022
+    second: Bat Swarm Medium 2_25
+  - first:
+      213: -2133109619110124082
+    second: Bat Swarm Medium 2_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: VisionOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_0
+      rect:
+        serializedVersion: 2
+        x: 559
+        y: 414
+        width: 271
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c030a87b75322b30800000000000000
+      internalID: 4261027001866924228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_1
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 712
+        width: 31
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80ab9ab3f5d4a2970800000000000000
+      internalID: 8730875899029338632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_2
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 644
+        width: 114
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9716bf728425da570800000000000000
+      internalID: 8479524143270420857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_3
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 417
+        width: 183
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2283e3ed3a1a81f10800000000000000
+      internalID: 2240718539797182498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_4
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 733
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 167c056a79edf9d30800000000000000
+      internalID: 4440512500522338145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_5
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 705
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da49dbb256eea6840800000000000000
+      internalID: 5218245236555093165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_6
+      rect:
+        serializedVersion: 2
+        x: 933
+        y: 560
+        width: 105
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b37bdf4b38fc00d20800000000000000
+      internalID: 3242819896290948923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_7
+      rect:
+        serializedVersion: 2
+        x: 1018
+        y: 688
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ccbeae3aa84437c0800000000000000
+      internalID: -4092566265339659071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_8
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 654
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddeeccd65d4334cd0800000000000000
+      internalID: -2575156470650966307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_9
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 683
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcfb93d1067dd68e0800000000000000
+      internalID: -1698464676641652785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_10
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 655
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4ec52d85bb4df320800000000000000
+      internalID: 2593312203564502603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_11
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 393
+        width: 139
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac55b1db0c51940a0800000000000000
+      internalID: -6896957436790614582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_12
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 663
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf6fab23d43a5d9c0800000000000000
+      internalID: -3903033950087743749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_13
+      rect:
+        serializedVersion: 2
+        x: 1133
+        y: 538
+        width: 102
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a1ec26c8625c920800000000000000
+      internalID: 3009854310361995893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_14
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 617
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de1d89ccc30e830a0800000000000000
+      internalID: -6901519877210058259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_15
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 495
+        width: 45
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35aa07c99f1b9b010800000000000000
+      internalID: 1205190060927920723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_16
+      rect:
+        serializedVersion: 2
+        x: 979
+        y: 508
+        width: 23
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85e74d2e780074100800000000000000
+      internalID: 92042901010546264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_17
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 420
+        width: 65
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f64ea311f0f83b0800000000000000
+      internalID: -5508167252573917388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_18
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 531
+        width: 28
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da44917697d65ae60800000000000000
+      internalID: 7972899083517510829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_19
+      rect:
+        serializedVersion: 2
+        x: 1236
+        y: 544
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0de0432bd4a5ed3a0800000000000000
+      internalID: -6638769510948794672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_20
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 519
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4c423ae7651a2e80800000000000000
+      internalID: -8202720235246957492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_21
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 459
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaa04b2876043e930800000000000000
+      internalID: 4171248493193857706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_22
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 464
+        width: 123
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a6c4effdd02b3a50800000000000000
+      internalID: 6501826624892487330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_23
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 492
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a911e75654611180800000000000000
+      internalID: -9146419046208431703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_24
+      rect:
+        serializedVersion: 2
+        x: 817
+        y: 384
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0df8276d23edde050800000000000000
+      internalID: 5831561402442223568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_25
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 378
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e22cf2f999e268120800000000000000
+      internalID: 2415669487466431022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Medium 2_26
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 400
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5e8f56a1ca562e0800000000000000
+      internalID: -2133109619110124082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bat Swarm Medium 2_0: 4261027001866924228
+      Bat Swarm Medium 2_1: 8730875899029338632
+      Bat Swarm Medium 2_10: 2593312203564502603
+      Bat Swarm Medium 2_11: -6896957436790614582
+      Bat Swarm Medium 2_12: -3903033950087743749
+      Bat Swarm Medium 2_13: 3009854310361995893
+      Bat Swarm Medium 2_14: -6901519877210058259
+      Bat Swarm Medium 2_15: 1205190060927920723
+      Bat Swarm Medium 2_16: 92042901010546264
+      Bat Swarm Medium 2_17: -5508167252573917388
+      Bat Swarm Medium 2_18: 7972899083517510829
+      Bat Swarm Medium 2_19: -6638769510948794672
+      Bat Swarm Medium 2_2: 8479524143270420857
+      Bat Swarm Medium 2_20: -8202720235246957492
+      Bat Swarm Medium 2_21: 4171248493193857706
+      Bat Swarm Medium 2_22: 6501826624892487330
+      Bat Swarm Medium 2_23: -9146419046208431703
+      Bat Swarm Medium 2_24: 5831561402442223568
+      Bat Swarm Medium 2_25: 2415669487466431022
+      Bat Swarm Medium 2_26: -2133109619110124082
+      Bat Swarm Medium 2_3: 2240718539797182498
+      Bat Swarm Medium 2_4: 4440512500522338145
+      Bat Swarm Medium 2_5: 5218245236555093165
+      Bat Swarm Medium 2_6: 3242819896290948923
+      Bat Swarm Medium 2_7: -4092566265339659071
+      Bat Swarm Medium 2_8: -2575156470650966307
+      Bat Swarm Medium 2_9: -1698464676641652785
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

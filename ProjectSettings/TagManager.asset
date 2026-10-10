@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectible
   - CheckPoint
+  - Powerup
   layers:
   - Default
   - TransparentFX
