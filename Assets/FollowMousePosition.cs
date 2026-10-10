@@ -24,7 +24,7 @@ public class FollowMousePosition : MonoBehaviour
 
     private void Dellay(float maxSpeed)
     {
-        transform.position = Vector2.MoveTowards(transform.position, GetWorldPositionFromMouse(), maxSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, GetWorldPositionFromMouse(), maxSpeed);
     }
 
     private void FollowMousPosition()

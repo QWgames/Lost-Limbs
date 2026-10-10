@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -138,6 +137,7 @@ public class LLPlayerController : MonoBehaviour
         }
 
         UpdateFacing();
+        UpdateFacingDirection();
         UpdateAnimation();
     }
 
@@ -239,6 +239,8 @@ public class LLPlayerController : MonoBehaviour
 
         if (visualTransform != null)
         {
+            // Rotate the visual for crawling without changing
+            // its horizontal facing direction.
             visualTransform.localRotation = Quaternion.Euler(
                 0f,
                 0f,
@@ -269,8 +271,6 @@ public class LLPlayerController : MonoBehaviour
         if (isCrawling)
             jumpBufferCounter = 0f;
     }
-
-
 
     private bool CanStandUp()
     {
@@ -341,14 +341,29 @@ public class LLPlayerController : MonoBehaviour
         return !blocked;
     }
 
-
-
     private void UpdateFacing()
     {
         if (horizontalInput > 0f)
             facingRight = true;
         else if (horizontalInput < 0f)
             facingRight = false;
+    }
+
+    private void UpdateFacingDirection()
+    {
+        if (visualTransform == null)
+            return;
+
+        // Preserve the original scale magnitudes so that facing
+        // changes only the horizontal sign.
+        Vector3 scale = visualTransform.localScale;
+
+        if (facingRight)
+            scale.x = Mathf.Abs(scale.x);
+        else
+            scale.x = -Mathf.Abs(scale.x);
+
+        visualTransform.localScale = scale;
     }
 
     private void UpdateAnimation()
@@ -453,3 +468,4 @@ public class LLPlayerController : MonoBehaviour
         }
     }
 }
+
