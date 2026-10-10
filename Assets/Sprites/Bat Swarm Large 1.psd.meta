@@ -1,0 +1,1677 @@
+fileFormatVersion: 2
+guid: 89d4060e19117ed4cab2330b8f961e07
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5613032684121315607
+    second: Bat Swarm Large 1_0
+  - first:
+      213: 3115260553720534252
+    second: Bat Swarm Large 1_1
+  - first:
+      213: -2726939292862703681
+    second: Bat Swarm Large 1_2
+  - first:
+      213: -3993580899297713094
+    second: Bat Swarm Large 1_3
+  - first:
+      213: -5465135862726854352
+    second: Bat Swarm Large 1_4
+  - first:
+      213: -7297135879276155820
+    second: Bat Swarm Large 1_5
+  - first:
+      213: -1414227580590495746
+    second: Bat Swarm Large 1_6
+  - first:
+      213: -4343780561898071802
+    second: Bat Swarm Large 1_7
+  - first:
+      213: -5401203892764129395
+    second: Bat Swarm Large 1_8
+  - first:
+      213: 5205579099334236667
+    second: Bat Swarm Large 1_9
+  - first:
+      213: -3736083333307623198
+    second: Bat Swarm Large 1_10
+  - first:
+      213: -7129715385934291402
+    second: Bat Swarm Large 1_11
+  - first:
+      213: -1912618302076966317
+    second: Bat Swarm Large 1_12
+  - first:
+      213: 9102311424649383488
+    second: Bat Swarm Large 1_13
+  - first:
+      213: 3705428508761694870
+    second: Bat Swarm Large 1_14
+  - first:
+      213: -6795129669730300325
+    second: Bat Swarm Large 1_15
+  - first:
+      213: -4942394257559856414
+    second: Bat Swarm Large 1_16
+  - first:
+      213: 7193562303462733570
+    second: Bat Swarm Large 1_17
+  - first:
+      213: -5156705825420177890
+    second: Bat Swarm Large 1_18
+  - first:
+      213: 8713655913613914282
+    second: Bat Swarm Large 1_19
+  - first:
+      213: 5704124444822459389
+    second: Bat Swarm Large 1_20
+  - first:
+      213: 4888880138644415780
+    second: Bat Swarm Large 1_21
+  - first:
+      213: -3709904584193707396
+    second: Bat Swarm Large 1_22
+  - first:
+      213: 5715547966805059490
+    second: Bat Swarm Large 1_23
+  - first:
+      213: -4314464203943152990
+    second: Bat Swarm Large 1_24
+  - first:
+      213: -5983692579683353113
+    second: Bat Swarm Large 1_25
+  - first:
+      213: 7883363038169769374
+    second: Bat Swarm Large 1_26
+  - first:
+      213: 6931278538926126494
+    second: Bat Swarm Large 1_27
+  - first:
+      213: -6044286155262975418
+    second: Bat Swarm Large 1_28
+  - first:
+      213: -8922580703269942822
+    second: Bat Swarm Large 1_29
+  - first:
+      213: -4279182091522466685
+    second: Bat Swarm Large 1_30
+  - first:
+      213: -8098500924433979291
+    second: Bat Swarm Large 1_31
+  - first:
+      213: -2805353035210336225
+    second: Bat Swarm Large 1_32
+  - first:
+      213: -2917184001529444232
+    second: Bat Swarm Large 1_33
+  - first:
+      213: 3613618029819313716
+    second: Bat Swarm Large 1_34
+  - first:
+      213: 1981382103098627313
+    second: Bat Swarm Large 1_35
+  - first:
+      213: 3992060672875699716
+    second: Bat Swarm Large 1_36
+  - first:
+      213: -3133733711363861578
+    second: Bat Swarm Large 1_37
+  - first:
+      213: 8810352278009399491
+    second: Bat Swarm Large 1_38
+  - first:
+      213: 5514491085585238124
+    second: Bat Swarm Large 1_39
+  - first:
+      213: 8546336962684563775
+    second: Bat Swarm Large 1_40
+  - first:
+      213: 2327441039751889311
+    second: Bat Swarm Large 1_41
+  - first:
+      213: -4178667963698636127
+    second: Bat Swarm Large 1_42
+  - first:
+      213: 9128862085484425990
+    second: Bat Swarm Large 1_43
+  - first:
+      213: -7060631735703280376
+    second: Bat Swarm Large 1_44
+  - first:
+      213: 4790752087454996492
+    second: Bat Swarm Large 1_45
+  - first:
+      213: -5313473807126694281
+    second: Bat Swarm Large 1_46
+  - first:
+      213: -1433547850682902057
+    second: Bat Swarm Large 1_47
+  - first:
+      213: -6158431364597066780
+    second: Bat Swarm Large 1_48
+  - first:
+      213: -2746401615843609154
+    second: Bat Swarm Large 1_49
+  - first:
+      213: -966004030744786686
+    second: Bat Swarm Large 1_50
+  - first:
+      213: -8899917473702829059
+    second: Bat Swarm Large 1_51
+  - first:
+      213: -3084479698781426515
+    second: Bat Swarm Large 1_52
+  - first:
+      213: 225615989825897511
+    second: Bat Swarm Large 1_53
+  - first:
+      213: 6467657539363368641
+    second: Bat Swarm Large 1_54
+  - first:
+      213: -524945608242607193
+    second: Bat Swarm Large 1_55
+  - first:
+      213: -5548010503053321891
+    second: Bat Swarm Large 1_56
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: VisionOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_0
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 782
+        width: 72
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71955b1bc7f75ed40800000000000000
+      internalID: 5613032684121315607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_1
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 889
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce49c4fd7f0ab3b20800000000000000
+      internalID: 3115260553720534252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_2
+      rect:
+        serializedVersion: 2
+        x: 1117
+        y: 874
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb71ddc3927f72ad0800000000000000
+      internalID: -2726939292862703681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_3
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 338
+        width: 183
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a34239bb453f398c0800000000000000
+      internalID: -3993580899297713094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_4
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 577
+        width: 155
+        height: 210
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 039faec63efe724b0800000000000000
+      internalID: -5465135862726854352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_5
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 762
+        width: 43
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45cacf5649d5bba90800000000000000
+      internalID: -7297135879276155820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_6
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 757
+        width: 24
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef7e7532287af5ce0800000000000000
+      internalID: -1414227580590495746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_7
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 747
+        width: 32
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60991d1e79ac7b3c0800000000000000
+      internalID: -4343780561898071802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_8
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 730
+        width: 24
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8746542da11b05b0800000000000000
+      internalID: -5401203892764129395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_9
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 649
+        width: 126
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf9d30a4c9eed3840800000000000000
+      internalID: 5205579099334236667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_10
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 335
+        width: 271
+        height: 331
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e811f2c004c62cc0800000000000000
+      internalID: -3736083333307623198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_11
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 633
+        width: 31
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63edfbf91a92e0d90800000000000000
+      internalID: -7129715385934291402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_12
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 565
+        width: 114
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35aaac9a9c30575e0800000000000000
+      internalID: -1912618302076966317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_13
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 654
+        width: 25
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ec43db308e15e70800000000000000
+      internalID: 9102311424649383488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_14
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 626
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 692a855b8935c6330800000000000000
+      internalID: 3705428508761694870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_15
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 537
+        width: 82
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5e02094199d2b1a0800000000000000
+      internalID: -6795129669730300325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_16
+      rect:
+        serializedVersion: 2
+        x: 1373
+        y: 637
+        width: 51
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ead632db96196bb0800000000000000
+      internalID: -4942394257559856414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_17
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 481
+        width: 105
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20779874dcaa4d360800000000000000
+      internalID: 7193562303462733570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_18
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 609
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e84a88f53bf68b0800000000000000
+      internalID: -5156705825420177890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_19
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 575
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa070f1f2ef1de870800000000000000
+      internalID: 8713655913613914282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 604
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3d348f5fe192f40800000000000000
+      internalID: 5704124444822459389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_21
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 487
+        width: 97
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 425ec5d659ac8d340800000000000000
+      internalID: 4888880138644415780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_22
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 432
+        width: 265
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c727a84cf65c38cc0800000000000000
+      internalID: -3709904584193707396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_23
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 582
+        width: 43
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a72f12f794b15f40800000000000000
+      internalID: 5715547966805059490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_24
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 576
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a274df5aa1ff14c0800000000000000
+      internalID: -4314464203943152990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_25
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 314
+        width: 139
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ed35de3d47a5fca0800000000000000
+      internalID: -5983692579683353113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_26
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 584
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e95ad855ae4576d60800000000000000
+      internalID: 7883363038169769374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_27
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 459
+        width: 102
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e95faff8b19d03060800000000000000
+      internalID: 6931278538926126494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_28
+      rect:
+        serializedVersion: 2
+        x: 1483
+        y: 496
+        width: 37
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6422dba04c16e1ca0800000000000000
+      internalID: -6044286155262975418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_29
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 538
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad907ddcf10ac2480800000000000000
+      internalID: -8922580703269942822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_30
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 519
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38c17915f8a4d94c0800000000000000
+      internalID: -4279182091522466685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_31
+      rect:
+        serializedVersion: 2
+        x: 1414
+        y: 443
+        width: 43
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 568a0f121585c9f80800000000000000
+      internalID: -8098500924433979291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_32
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 416
+        width: 45
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1859b227426119d0800000000000000
+      internalID: -2805353035210336225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_33
+      rect:
+        serializedVersion: 2
+        x: 546
+        y: 429
+        width: 23
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87882644b941487d0800000000000000
+      internalID: -2917184001529444232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_34
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 341
+        width: 65
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43eb35dc376262230800000000000000
+      internalID: 3613618029819313716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_35
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 452
+        width: 28
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f4928366884f7b10800000000000000
+      internalID: 1981382103098627313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_36
+      rect:
+        serializedVersion: 2
+        x: 758
+        y: 286
+        width: 241
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e1098f706a66730800000000000000
+      internalID: 3992060672875699716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_37
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 465
+        width: 21
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b39d71facdb284d0800000000000000
+      internalID: -3133733711363861578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_38
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 440
+        width: 21
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8cdc4b7b8a44a70800000000000000
+      internalID: 8810352278009399491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_39
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 426
+        width: 34
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c68cd51ec68678c40800000000000000
+      internalID: 5514491085585238124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_40
+      rect:
+        serializedVersion: 2
+        x: 1506
+        y: 461
+        width: 44
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f31ba97ef20ba9670800000000000000
+      internalID: 8546336962684563775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_41
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 431
+        width: 47
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f91c31a5b4bbc4020800000000000000
+      internalID: 2327441039751889311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_42
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 380
+        width: 25
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aa107560a36206c0800000000000000
+      internalID: -4178667963698636127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_43
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 386
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 603b4d033bb30be70800000000000000
+      internalID: 9128862085484425990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_44
+      rect:
+        serializedVersion: 2
+        x: 1268
+        y: 357
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8056e8f58d8930e90800000000000000
+      internalID: -7060631735703280376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_45
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 378
+        width: 54
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0857bb14ab2c7240800000000000000
+      internalID: 4790752087454996492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_46
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 402
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 776fed279bfb246b0800000000000000
+      internalID: -5313473807126694281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_47
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 371
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9558733d30b1ce0800000000000000
+      internalID: -1433547850682902057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_48
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 299
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e3519b7d4bd88aa0800000000000000
+      internalID: -6158431364597066780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_49
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 340
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb5351d0842d2e9d0800000000000000
+      internalID: -2746401615843609154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_50
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 305
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2098cdfb3701892f0800000000000000
+      internalID: -966004030744786686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_51
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 256
+        width: 43
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3a6a126342d7480800000000000000
+      internalID: -8899917473702829059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_52
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 285
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dacaa356e0ab135d0800000000000000
+      internalID: -3084479698781426515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_53
+      rect:
+        serializedVersion: 2
+        x: 916
+        y: 240
+        width: 52
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72488312c8c812300800000000000000
+      internalID: 225615989825897511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_54
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 285
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ce61a2d34cb1c950800000000000000
+      internalID: 6467657539363368641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_55
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 268
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ab4c4620c407b8f0800000000000000
+      internalID: -524945608242607193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat Swarm Large 1_56
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 204
+        width: 61
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59de5397d18103b0800000000000000
+      internalID: -5548010503053321891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Bat Swarm Large 1_0: 5613032684121315607
+      Bat Swarm Large 1_1: 3115260553720534252
+      Bat Swarm Large 1_10: -3736083333307623198
+      Bat Swarm Large 1_11: -7129715385934291402
+      Bat Swarm Large 1_12: -1912618302076966317
+      Bat Swarm Large 1_13: 9102311424649383488
+      Bat Swarm Large 1_14: 3705428508761694870
+      Bat Swarm Large 1_15: -6795129669730300325
+      Bat Swarm Large 1_16: -4942394257559856414
+      Bat Swarm Large 1_17: 7193562303462733570
+      Bat Swarm Large 1_18: -5156705825420177890
+      Bat Swarm Large 1_19: 8713655913613914282
+      Bat Swarm Large 1_2: -2726939292862703681
+      Bat Swarm Large 1_20: 5704124444822459389
+      Bat Swarm Large 1_21: 4888880138644415780
+      Bat Swarm Large 1_22: -3709904584193707396
+      Bat Swarm Large 1_23: 5715547966805059490
+      Bat Swarm Large 1_24: -4314464203943152990
+      Bat Swarm Large 1_25: -5983692579683353113
+      Bat Swarm Large 1_26: 7883363038169769374
+      Bat Swarm Large 1_27: 6931278538926126494
+      Bat Swarm Large 1_28: -6044286155262975418
+      Bat Swarm Large 1_29: -8922580703269942822
+      Bat Swarm Large 1_3: -3993580899297713094
+      Bat Swarm Large 1_30: -4279182091522466685
+      Bat Swarm Large 1_31: -8098500924433979291
+      Bat Swarm Large 1_32: -2805353035210336225
+      Bat Swarm Large 1_33: -2917184001529444232
+      Bat Swarm Large 1_34: 3613618029819313716
+      Bat Swarm Large 1_35: 1981382103098627313
+      Bat Swarm Large 1_36: 3992060672875699716
+      Bat Swarm Large 1_37: -3133733711363861578
+      Bat Swarm Large 1_38: 8810352278009399491
+      Bat Swarm Large 1_39: 5514491085585238124
+      Bat Swarm Large 1_4: -5465135862726854352
+      Bat Swarm Large 1_40: 8546336962684563775
+      Bat Swarm Large 1_41: 2327441039751889311
+      Bat Swarm Large 1_42: -4178667963698636127
+      Bat Swarm Large 1_43: 9128862085484425990
+      Bat Swarm Large 1_44: -7060631735703280376
+      Bat Swarm Large 1_45: 4790752087454996492
+      Bat Swarm Large 1_46: -5313473807126694281
+      Bat Swarm Large 1_47: -1433547850682902057
+      Bat Swarm Large 1_48: -6158431364597066780
+      Bat Swarm Large 1_49: -2746401615843609154
+      Bat Swarm Large 1_5: -7297135879276155820
+      Bat Swarm Large 1_50: -966004030744786686
+      Bat Swarm Large 1_51: -8899917473702829059
+      Bat Swarm Large 1_52: -3084479698781426515
+      Bat Swarm Large 1_53: 225615989825897511
+      Bat Swarm Large 1_54: 6467657539363368641
+      Bat Swarm Large 1_55: -524945608242607193
+      Bat Swarm Large 1_56: -5548010503053321891
+      Bat Swarm Large 1_6: -1414227580590495746
+      Bat Swarm Large 1_7: -4343780561898071802
+      Bat Swarm Large 1_8: -5401203892764129395
+      Bat Swarm Large 1_9: 5205579099334236667
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
