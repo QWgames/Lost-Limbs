@@ -16,7 +16,7 @@ public class MoveByKeyboard : MonoBehaviour
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        Vector2 direction = new Vector2(horizontalInput,0);
+        Vector2 direction = new Vector2(0, -horizontalInput);
 
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 
