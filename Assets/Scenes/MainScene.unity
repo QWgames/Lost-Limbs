@@ -6288,8 +6288,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 206, y: 54}
+  m_AnchoredPosition: {x: -0.06, y: 0}
+  m_SizeDelta: {x: 207, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1790436200
 MonoBehaviour:
@@ -6304,14 +6304,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3705763673498213009, guid: 8a3e1ec2aebe9234c85096697698cb90, type: 3}
+  m_Sprite: {fileID: -6365301630682514751, guid: 33acba23fc0715747950f5308ade4d90, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7732,16 +7732,16 @@ RectTransform:
   m_GameObject: {fileID: 2049139297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1790436199}
   m_Father: {fileID: 1676103981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -678.2, y: -323.8}
-  m_SizeDelta: {x: 206, y: 54}
+  m_AnchoredPosition: {x: -728.6, y: -306.3}
+  m_SizeDelta: {x: 207, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2049139299
 MonoBehaviour:
@@ -7756,14 +7756,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1653210691544678204, guid: c3c675498c9a0124e9eafee7d1c94d1b, type: 3}
+  m_Sprite: {fileID: 8972090251048031404, guid: 69995bbf82433da40bde61d6cd212bab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12221,6 +12221,7 @@ MonoBehaviour:
   shakeAmount: 0.025
   shakeSpeed: 18
   toggleKey: 20
+  BatteryBar: {fileID: 1790436200}
 --- !u!1 &8833700063929800486
 GameObject:
   m_ObjectHideFlags: 0
