@@ -1,13 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(EdgeCollider2D))]
-[RequireComponent(typeof (WaterTriggerHandler))]
+[RequireComponent(typeof(WaterTriggerHandler))]
 public class InteractableWater : MonoBehaviour
 {
     [Header("Springs")]
@@ -64,12 +60,12 @@ public class InteractableWater : MonoBehaviour
     private void FixedUpdate()
     {
         //update all spring pos
-        for(int i = 1; i < _waterPoints.Count -1; i++)
+        for (int i = 1; i < _waterPoints.Count - 1; i++)
         {
             WaterPoint point = _waterPoints[i];
 
             float x = point.pos - point.targetHeight;
-            float acceleration = -_springConstant * x -_damping * point.velocity;
+            float acceleration = -_springConstant * x - _damping * point.velocity;
             point.pos += point.velocity * _speedMult * Time.fixedDeltaTime;
             _vertices[_topVerticesIndex[i]].y = point.pos;
             point.velocity += acceleration * _speedMult * Time.fixedDeltaTime;
@@ -145,7 +141,7 @@ public class InteractableWater : MonoBehaviour
                 float yPos = (y / (float)(NUM_OF_Y_VERTICES - 1)) * Height - Height / 2;
                 _vertices[y * NumOfXVertices + x] = new Vector3(xPos, yPos, 0f);
 
-                if (y == NUM_OF_Y_VERTICES -1)
+                if (y == NUM_OF_Y_VERTICES - 1)
                 {
                     _topVerticesIndex[x] = y * NumOfXVertices + x;
                 }
@@ -217,102 +213,5 @@ public class InteractableWater : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(InteractableWater))]
 
-public class InteractableWaterEditor : Editor
-{
-    private InteractableWater _water;
 
-    private void OnEnable()
-    {
-        _water = (InteractableWater)target;
-    }
-
-    public override VisualElement CreateInspectorGUI()
-    {
-        VisualElement root = new VisualElement();
-
-        InspectorElement.FillDefaultInspector(root, serializedObject, this);
-
-        root.Add(new VisualElement { style = { height = 10 } });
-
-        Button generateMeshButton = new Button(() => _water.GenerateMesh())
-        {
-            text = "Generate Mesh"
-        };
-        root.Add(generateMeshButton);
-
-        Button placeEdgeColliderButton = new Button(() => _water.ResetEdgeCollider())
-        {
-            text = "Place Edge Collider"
-        };
-        root.Add(placeEdgeColliderButton);
-
-        return root;
-    }
-
-    private void ChangeDimensions(ref float width, ref float height, float calculatedWidthMax, float calculatedHeightMax)
-    {
-        width = Mathf.Max(0.1f, calculatedWidthMax);
-        height = Mathf.Max(0.1f, calculatedHeightMax);
-    }
-
-    private void OnSceneGUI()
-    {
-        // Draw the wireframe box
-        Handles.color = _water.GizmoColor;
-        Vector3 center = _water.transform.position;
-        Vector3 size = new Vector3(_water.Width, _water.Height, 0.1f);
-        Handles.DrawWireCube(center, size);
-
-        // Handles for width & height
-        float handleSize = HandleUtility.GetHandleSize(center) * 0.1f;
-        Vector3 snap = Vector3.one * 0.1f;
-
-        // Corner handles
-        Vector3[] corners = new Vector3[4];
-        corners[0] = center + new Vector3(-_water.Width / 2, -_water.Height / 2, 0); //Bottom-left
-        corners[1] = center + new Vector3(_water.Width / 2, -_water.Height / 2, 0); //Bottom-right
-        corners[2] = center + new Vector3(-_water.Width / 2, _water.Height / 2, 0); //Top-left
-        corners[3] = center + new Vector3(_water.Width / 2, _water.Height / 2, 0); //Top-right
-
-        // Handles for each corner
-        EditorGUI.BeginChangeCheck();
-        Vector3 newBottomLeft = Handles.FreeMoveHandle(corners[0], handleSize, snap, Handles.CubeHandleCap);
-        if (EditorGUI.EndChangeCheck())
-        {
-            ChangeDimensions(ref _water.Width, ref _water.Height, corners[1].x - newBottomLeft.x, corners[3].y - newBottomLeft.y);
-            _water.transform.position += new Vector3((newBottomLeft.x - corners[0].x) / 2, (newBottomLeft.y - corners[0].y) / 2, 0);
-        }
-
-        EditorGUI.BeginChangeCheck();
-        Vector3 newBottomRight = Handles.FreeMoveHandle(corners[1], handleSize, snap, Handles.CubeHandleCap);
-        if (EditorGUI.EndChangeCheck())
-        {
-            ChangeDimensions(ref _water.Width, ref _water.Height, newBottomRight.x - corners[0].x, corners[3].y - newBottomRight.y);
-            _water.transform.position += new Vector3((newBottomRight.x - corners[1].x) / 2, (newBottomRight.y - corners[1].y) / 2, 0);
-        }
-
-        EditorGUI.BeginChangeCheck();
-        Vector3 newTopLeft = Handles.FreeMoveHandle(corners[2], handleSize, snap, Handles.CubeHandleCap);
-        if (EditorGUI.EndChangeCheck())
-        {
-            ChangeDimensions(ref _water.Width, ref _water.Height, corners[3].x - newTopLeft.x, newTopLeft.y - corners[0].y);
-            _water.transform.position += new Vector3((newTopLeft.x - corners[2].x) / 2, (newTopLeft.y - corners[2].y) / 2, 0);
-        }
-
-        EditorGUI.BeginChangeCheck();
-        Vector3 newTopRight = Handles.FreeMoveHandle(corners[3], handleSize, snap, Handles.CubeHandleCap);
-        if (EditorGUI.EndChangeCheck())
-        {
-            ChangeDimensions(ref _water.Width, ref _water.Height, newTopRight.x - corners[2].x, newTopRight.y - corners[1].y);
-            _water.transform.position += new Vector3((newTopRight.x - corners[3].x) / 2, (newTopRight.y - corners[3].y) / 2, 0);
-        }
-
-        // Update the mesh if the handles are moved
-        if (GUI.changed)
-        {
-            _water.GenerateMesh();
-        }
-    }
-}
