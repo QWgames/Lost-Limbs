@@ -1,10 +1,14 @@
 
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InsanityEffect2D : MonoBehaviour
 {
+    
+
+
     [Header("References")]
     [SerializeField] private Image screenOverlay;
     [SerializeField] private HeadlampBattery2D headlamp;
@@ -36,6 +40,9 @@ public class InsanityEffect2D : MonoBehaviour
     [SerializeField, Min(0.1f)] private float maximumSpawnInterval = 2f;
     [SerializeField] private Vector2 eyeSize = new Vector2(110f, 55f);
     [SerializeField, Range(0f, 0.3f)] private float screenEdgeMargin = 0.08f;
+
+    [Header("SanityBar")]
+    public Image SanityBar;
 
     private readonly Dictionary<LightExposure2D, float> lightZones =
         new Dictionary<LightExposure2D, float>();
@@ -117,7 +124,10 @@ public class InsanityEffect2D : MonoBehaviour
 
         UpdateOverlay();
         UpdateEyes();
+
+        SanityBar.fillAmount = 1 - (insanity / maximumInsanityAlpha);
     }
+
 
     public void RegisterLightZone(LightExposure2D zone, float strength)
     {
