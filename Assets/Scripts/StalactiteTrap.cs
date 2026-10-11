@@ -18,6 +18,7 @@ public class StalactiteTrap : MonoBehaviour
     [Header("Falling")]
     [SerializeField, Min(0f)] private float fallGravityScale = 3f;
     [SerializeField] private bool freezeRotation = true;
+    [SerializeField, Min(0.1f)] private float maxFallDuration = 3f;
 
     [Header("Shattering")]
     [SerializeField] private GameObject shatterEffect;
@@ -28,6 +29,7 @@ public class StalactiteTrap : MonoBehaviour
 
     private bool triggered;
     private bool hasImpacted;
+    private float fallTimer;
 
     private void Awake()
     {
@@ -78,6 +80,7 @@ public class StalactiteTrap : MonoBehaviour
         StartCoroutine(RumbleThenFall());
     }
 
+
     private IEnumerator RumbleThenFall()
     {
         float elapsed = 0f;
@@ -102,37 +105,54 @@ public class StalactiteTrap : MonoBehaviour
             yield return null;
         }
 
-        // Reset the visual before the fall begins.
         if (visualTransform != null)
             visualTransform.localPosition = originalVisualPosition;
 
-        // Activate gravity so the stalactite drops.
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = fallGravityScale;
         rb.linearVelocity = Vector2.zero;
+
+        // Begin timing only once the stalactite starts falling.
+        fallTimer = 0f;
     }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Prevent multiple impacts and duplicate effects.
         if (hasImpacted)
+            return;
+
+        LLPlayerController player =
+            collision.collider.GetComponentInParent<LLPlayerController>();
+
+        if (player == null && collision.otherCollider != null)
+        {
+            player = collision.otherCollider
+                .GetComponentInParent<LLPlayerController>();
+        }
+
+        // Ignore collisions that do not involve the player.
+        if (player == null)
             return;
 
         hasImpacted = true;
 
-        // Remove the player's legs if the stalactite hits them.
-        LLPlayerController player =
-            collision.collider.GetComponentInParent<LLPlayerController>();
+        // Remove the player's legs on impact.
+        player.SetLegsEnabled(false);
 
-        if (player != null)
-            player.SetLegsEnabled(false);
+        Shatter();
+    }
 
-        // Stop movement before destroying the stalactite.
+    private void Shatter()
+    {
+        if (hasImpacted == false)
+            hasImpacted = true;
+
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.bodyType = RigidbodyType2D.Static;
 
-        // Spawn the optional shatter effect.
         if (shatterEffect != null)
         {
             Instantiate(
@@ -142,9 +162,9 @@ public class StalactiteTrap : MonoBehaviour
             );
         }
 
-        // Destroy the entire stalactite object.
         Destroy(gameObject, destroyDelay);
     }
+
 
     private void OnDisable()
     {
@@ -165,4 +185,25 @@ public class StalactiteTrap : MonoBehaviour
             detectionZone.size
         );
     }
+
+    private void Update()
+    {
+        // Only count time after the stalactite begins falling.
+        if (hasImpacted || !triggered)
+            return;
+
+        if (rb.bodyType != RigidbodyType2D.Dynamic)
+            return;
+
+        fallTimer += Time.deltaTime;
+
+        if (fallTimer >= maxFallDuration)
+        {
+            hasImpacted = true;
+            Shatter();
+        }
+    }
+
 }
+
+

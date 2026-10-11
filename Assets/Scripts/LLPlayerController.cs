@@ -1,131 +1,175 @@
+
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class LLPlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField, Min(0f)] private float walkSpeed = 5f;
-    [SerializeField, Min(0f)] private float crawlSpeed = 2.5f;
-    [SerializeField, Min(0f)] private float jumpHeight = 2.5f;
+    [SerializeField, Min(0f)] private float walkSpeed = 3f;
+    [SerializeField, Min(0f)] private float crawlSpeed = 1.5f;
+    [SerializeField, Min(0f)] private float jumpHeight = 1.5f;
     [SerializeField, Min(0f)] private float gravityScale = 3f;
+
+    [Header("Jump Animation")]
+    [SerializeField, Min(0f)]
+    private float jumpStartupDelay = 0.25f;
 
     [Header("Ground Detection")]
     [SerializeField] private Transform groundCheck;
     [SerializeField, Min(0.01f)] private float groundCheckRadius = 0.15f;
-    [SerializeField] private LayerMask groundLayers = ~0;
+    [SerializeField] private LayerMask groundLayers;
     [SerializeField, Min(0f)] private float jumpBufferDuration = 0.12f;
-
-    [Header("Crawl Mode")]
-    [SerializeField] private Transform hitboxTransform;
-    [SerializeField] private CapsuleCollider2D bodyCollider;
-    [SerializeField] private Vector2 standingHitboxOffset = Vector2.zero;
-    [SerializeField] private Vector2 crawlingHitboxOffset = Vector2.zero;
-    [SerializeField] private float crawlingRotation = 90f;
-    [SerializeField] private bool rotateHitboxWhenCrawling = true;
-
-    [Header("Visual Rotation")]
-    [SerializeField] private Transform visualTransform;
-    [SerializeField] private bool rotateVisualWhenCrawling = true;
-    [SerializeField] private float crawlingVisualRotation = 90f;
-
-    [Header("Legs")]
-    [SerializeField] private bool startsWithLegs = true;
-    [SerializeField] private GameObject legsObject;
-
-    [Header("Crawling Legs Position")]
-    [SerializeField]
-    private Vector2 crawlingLegsOffset =
-        new Vector2(0f, -0.25f);
-    [SerializeField] private float crawlingLegsRotation = 0f;
 
     [Header("Standing Clearance")]
     [SerializeField] private Transform standCheck;
-    [SerializeField, MinAttribute(0.01f)] private float standCheckRadius = 0.15f;
-    [SerializeField] private LayerMask standingClearanceLayers = ~0;
+    [SerializeField, Min(0.01f)] private float standCheckRadius = 0.15f;
+    [SerializeField] private LayerMask standingClearanceLayers;
 
-    [Header("Animation (Optional)")]
-    [SerializeField] private Animator animator;
-    [SerializeField] private string speedParameter = "Speed";
-    [SerializeField] private string groundedParameter = "Grounded";
-    [SerializeField] private string crawlingParameter = "Crawling";
-    [SerializeField] private string hasLegsParameter = "HasLegs";
-    [SerializeField] private string jumpParameter = "Jump";
-    [SerializeField] private string facingParameter = "Facing";
+    [Header("Leg Sprites")]
+    [SerializeField] private GameObject leftLegSprite;
+    [SerializeField] private GameObject rightLegSprite;
+    [SerializeField] private bool startsWithLegs = true;
+
+    [Header("Crawling Collider")]
+    [SerializeField, Range(0.2f, 1f)]
+    private float crawlColliderHeightRatio = 0.55f;
+
+    [Header("Legless Pose")]
+    [SerializeField] private Transform visualRoot;
+    [SerializeField, Min(0.05f)] private float fallOverDuration = 0.25f;
+    [SerializeField] private Transform facingRoot;
+
+    [Header("Legless Visual Offset")]
+    [SerializeField] private float leglessVisualOffsetX = 0f;
+    [SerializeField] private float leglessVisualOffsetY = 0f;
+
+    [Header("Facing")]
+    [SerializeField] private float leftFacingOffsetX = 0f;
 
     private Rigidbody2D rb;
+    private CapsuleCollider2D bodyCollider;
+    private Animator animator;
+
+    private Vector2 standingColliderSize;
+    private Vector2 standingColliderOffset;
+    private CapsuleDirection2D standingColliderDirection;
+
+    private Quaternion originalVisualRotation;
+    private Vector3 originalVisualLocalPosition;
+
+    private Coroutine fallOverRoutine;
+    private Coroutine standUpRoutine;
 
     private float horizontalInput;
     private float jumpBufferCounter;
+    private float jumpStartupCounter;
 
     private bool isGrounded;
     private bool isCrawling;
     private bool hasLegs;
-    private bool facingRight = true;
+    private bool isLegless;
 
-    private Vector3 originalLegsPosition;
-    private Quaternion originalLegsRotation;
+    private bool isJumpStartup;
+    private bool jumpReadyToLaunch;
+    private bool hasLaunchedJump;
+
+    private int facingDirection = 1;
 
     public bool IsGrounded => isGrounded;
     public bool IsCrawling => isCrawling;
     public bool HasLegs => hasLegs;
-    public float HorizontalInput => horizontalInput;
+
+    // The climbing controller sets this while it owns player movement.
+    // Normal movement must not overwrite climbing velocity.
+    public bool ExternalMovementControl { get; set; }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        bodyCollider = GetComponent<CapsuleCollider2D>();
+
+        if (visualRoot != null)
+            animator = visualRoot.GetComponent<Animator>();
 
         rb.gravityScale = gravityScale;
         rb.freezeRotation = true;
 
-        if (hitboxTransform == null && bodyCollider != null)
-            hitboxTransform = bodyCollider.transform;
+        standingColliderSize = bodyCollider.size;
+        standingColliderOffset = bodyCollider.offset;
+        standingColliderDirection = bodyCollider.direction;
 
-        // Remember the legs' original standing pose.
-        if (legsObject != null)
+        if (visualRoot != null)
         {
-            originalLegsPosition =
-                legsObject.transform.localPosition;
-
-            originalLegsRotation =
-                legsObject.transform.localRotation;
+            originalVisualRotation = visualRoot.localRotation;
+            originalVisualLocalPosition = visualRoot.localPosition;
         }
 
         hasLegs = startsWithLegs;
+        isLegless = !hasLegs;
 
-        if (legsObject != null)
-            legsObject.SetActive(hasLegs);
-
+        ApplyLegSprites();
         UpdateCrawlState(false);
+        UpdateFacingDirection();
+        UpdateAnimatorParameters();
     }
 
     private void Update()
     {
         Keyboard keyboard = Keyboard.current;
 
-        if (keyboard == null)
-            return;
-
-        // Keep leg state synchronized if changed externally.
-        if (legsObject != null &&
-            legsObject.activeSelf != hasLegs)
+        // While climbing controls movement, do not collect normal movement
+        // inputs. Keep visual animation and state updates running.
+        if (ExternalMovementControl)
         {
-            SetLegsEnabled(legsObject.activeSelf);
+            horizontalInput = 0f;
+            jumpBufferCounter = 0f;
+
+            if (isJumpStartup)
+                CancelJumpStartup();
+
+            UpdateAnimatorParameters();
+            return;
         }
 
+        // No keyboard available: clear input without affecting physics.
+        if (keyboard == null)
+        {
+            horizontalInput = 0f;
+            UpdateAnimatorParameters();
+            return;
+        }
+
+        // Legless characters cannot walk, crawl, or jump through keyboard
+        // movement. Their Rigidbody physics and climbing remain active.
         horizontalInput = 0f;
 
-        if (keyboard.aKey.isPressed)
-            horizontalInput -= 1f;
+        if (hasLegs && !isLegless)
+        {
+            if (keyboard.aKey.isPressed)
+                horizontalInput -= 1f;
 
-        if (keyboard.dKey.isPressed)
-            horizontalInput += 1f;
+            if (keyboard.dKey.isPressed)
+                horizontalInput += 1f;
+        }
 
-        // Shift requests crawling. The character may remain
-        // crawling after Shift is released if standing is blocked.
-        UpdateCrawlState(keyboard.leftShiftKey.isPressed);
+        if (horizontalInput < 0f)
+            facingDirection = -1;
+        else if (horizontalInput > 0f)
+            facingDirection = 1;
 
-        if (keyboard.spaceKey.wasPressedThisFrame &&
+        UpdateFacingDirection();
+
+        // Crawling only applies while the character has legs.
+        if (hasLegs && !isLegless)
+            UpdateCrawlState(keyboard.leftShiftKey.isPressed);
+
+        bool canUseNormalMovement = hasLegs && !isLegless;
+
+        if (canUseNormalMovement &&
+            keyboard.spaceKey.wasPressedThisFrame &&
             !isCrawling)
         {
             jumpBufferCounter = jumpBufferDuration;
@@ -138,46 +182,161 @@ public class LLPlayerController : MonoBehaviour
             );
         }
 
-        UpdateFacing();
-        UpdateFacingDirection();
-        UpdateAnimation();
+        if (isJumpStartup && (!canUseNormalMovement || isCrawling))
+            CancelJumpStartup();
+
+        if (!isJumpStartup &&
+            !hasLaunchedJump &&
+            jumpBufferCounter > 0f &&
+            isGrounded &&
+            !isCrawling &&
+            canUseNormalMovement)
+        {
+            BeginJumpStartup();
+        }
+
+        if (isJumpStartup)
+        {
+            jumpStartupCounter -= Time.deltaTime;
+
+            if (jumpStartupCounter <= 0f)
+                jumpReadyToLaunch = true;
+        }
+
+        UpdateAnimatorParameters();
+    }
+
+    private void BeginJumpStartup()
+    {
+        isJumpStartup = true;
+        jumpReadyToLaunch = false;
+        jumpStartupCounter = jumpStartupDelay;
+        jumpBufferCounter = 0f;
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("Jump");
+            animator.SetBool("IsJumping", true);
+            animator.SetTrigger("Jump");
+        }
+    }
+
+    private void CancelJumpStartup()
+    {
+        isJumpStartup = false;
+        jumpReadyToLaunch = false;
+        jumpStartupCounter = 0f;
+        jumpBufferCounter = 0f;
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("Jump");
+            animator.SetBool("IsJumping", false);
+        }
+    }
+
+    private void UpdateFacingDirection()
+    {
+        if (visualRoot == null)
+            return;
+
+        Vector3 scale = visualRoot.localScale;
+        scale.x = Mathf.Abs(scale.x) * facingDirection;
+        visualRoot.localScale = scale;
+
+        // The fall-over animation owns the visual position while legless.
+        if (isLegless)
+            return;
+
+        Vector3 position = originalVisualLocalPosition;
+
+        if (facingDirection < 0)
+            position.x += leftFacingOffsetX;
+
+        visualRoot.localPosition = position;
     }
 
     private void FixedUpdate()
     {
         CheckGrounded();
 
-        float movement = hasLegs ? horizontalInput : 0f;
-        float speed = isCrawling ? crawlSpeed : walkSpeed;
+        // Do not write to Rigidbody velocity while the climbing controller
+        // owns movement. Gravity, joints, collisions, and physics still work.
+        if (ExternalMovementControl)
+        {
+            UpdateAnimatorParameters();
+            return;
+        }
 
         Vector2 velocity = rb.linearVelocity;
-        velocity.x = movement * speed;
 
-        if (jumpBufferCounter > 0f &&
-            isGrounded &&
-            !isCrawling)
+        if (hasLegs && !isLegless)
         {
-            float jumpVelocity = Mathf.Sqrt(
-                2f *
-                Mathf.Abs(
-                    Physics2D.gravity.y * rb.gravityScale
-                ) *
-                jumpHeight
-            );
+            float speed = isCrawling ? crawlSpeed : walkSpeed;
+            velocity.x = horizontalInput * speed;
+        }
 
-            velocity.y = jumpVelocity;
+        // Crucially, when legless, do not set velocity.x to zero.
+        // Existing momentum and climbing launch velocity are preserved.
 
-            isGrounded = false;
-            jumpBufferCounter = 0f;
-
-            if (animator != null &&
-                !string.IsNullOrEmpty(jumpParameter))
+        if (jumpReadyToLaunch)
+        {
+            if (isGrounded &&
+                !isCrawling &&
+                hasLegs &&
+                !isLegless)
             {
-                animator.SetTrigger(jumpParameter);
+                float jumpVelocity = Mathf.Sqrt(
+                    2f * Mathf.Abs(
+                        Physics2D.gravity.y * rb.gravityScale
+                    ) * jumpHeight
+                );
+
+                velocity.y = jumpVelocity;
+
+                isGrounded = false;
+                hasLaunchedJump = true;
             }
+
+            isJumpStartup = false;
+            jumpReadyToLaunch = false;
+            jumpStartupCounter = 0f;
+        }
+
+        if (hasLaunchedJump &&
+            isGrounded &&
+            velocity.y <= 0f)
+        {
+            hasLaunchedJump = false;
+
+            if (animator != null)
+                animator.SetBool("IsJumping", false);
         }
 
         rb.linearVelocity = velocity;
+
+        UpdateAnimatorParameters();
+    }
+
+    private void UpdateAnimatorParameters()
+    {
+        if (animator == null)
+            return;
+
+        float animationSpeed = ExternalMovementControl
+            ? rb != null ? rb.linearVelocity.magnitude : 0f
+            : Mathf.Abs(horizontalInput) *
+              (isCrawling ? crawlSpeed : walkSpeed);
+
+        animator.SetFloat("Speed", animationSpeed);
+        animator.SetBool("IsCrouching", isCrawling);
+        animator.SetBool("IsLegless", isLegless);
+        animator.SetBool("IsGrounded", isGrounded);
+
+        animator.SetBool(
+            "IsJumping",
+            isJumpStartup || hasLaunchedJump
+        );
     }
 
     private void CheckGrounded()
@@ -198,13 +357,8 @@ public class LLPlayerController : MonoBehaviour
             if (hit == null || hit.isTrigger)
                 continue;
 
-            // Ignore the player's own colliders.
-            if (hit.attachedRigidbody == rb ||
-                hit.transform == transform ||
-                hit.transform.IsChildOf(transform))
-            {
+            if (hit.attachedRigidbody == rb)
                 continue;
-            }
 
             isGrounded = true;
             break;
@@ -213,78 +367,69 @@ public class LLPlayerController : MonoBehaviour
 
     private void UpdateCrawlState(bool crawlRequested)
     {
-        bool shouldCrawl = !hasLegs || crawlRequested;
+        if (isLegless)
+            return;
 
-        // Do not stand up if the standing hitbox would overlap
-        // a solid object above or around the character.
+        bool shouldCrawl = crawlRequested;
+
         if (!shouldCrawl && isCrawling && !CanStandUp())
-        {
             shouldCrawl = true;
-        }
+
+        if (isCrawling == shouldCrawl)
+            return;
 
         isCrawling = shouldCrawl;
 
-        if (hitboxTransform != null)
-        {
-            hitboxTransform.localRotation = Quaternion.Euler(
-                0f,
-                0f,
-                rotateHitboxWhenCrawling && isCrawling
-                    ? crawlingRotation
-                    : 0f
-            );
-
-            hitboxTransform.localPosition = isCrawling
-                ? crawlingHitboxOffset
-                : standingHitboxOffset;
-        }
-
-        if (visualTransform != null)
-        {
-            // Rotate the visual for crawling without changing
-            // its horizontal facing direction.
-            visualTransform.localRotation = Quaternion.Euler(
-                0f,
-                0f,
-                rotateVisualWhenCrawling && isCrawling
-                    ? crawlingVisualRotation
-                    : 0f
-            );
-        }
-
-        // Move and rotate the legs relative to their original pose.
-        if (legsObject != null)
-        {
-            Transform legs = legsObject.transform;
-
-            legs.localPosition = originalLegsPosition +
-                (isCrawling
-                    ? (Vector3)crawlingLegsOffset
-                    : Vector3.zero);
-
-            legs.localRotation = isCrawling
-                ? originalLegsRotation *
-                  Quaternion.Euler(
-                      0f, 0f, crawlingLegsRotation
-                  )
-                : originalLegsRotation;
-        }
-
         if (isCrawling)
-            jumpBufferCounter = 0f;
-    }
+        {
+            bodyCollider.direction = CapsuleDirection2D.Horizontal;
 
+            bodyCollider.size = new Vector2(
+                standingColliderSize.y,
+                standingColliderSize.x
+            );
+
+            bodyCollider.offset = standingColliderOffset;
+            jumpBufferCounter = 0f;
+        }
+        else
+        {
+            bodyCollider.direction = standingColliderDirection;
+            bodyCollider.size = standingColliderSize;
+            bodyCollider.offset = standingColliderOffset;
+
+            if (visualRoot != null)
+            {
+                visualRoot.localRotation = originalVisualRotation;
+                visualRoot.localPosition = originalVisualLocalPosition;
+            }
+        }
+    }
 
     private bool CanStandUp()
     {
-        // If no check is assigned, allow standing.
         if (standCheck == null)
             return true;
 
-        // Detect colliders around the StandCheck point.
-        Collider2D[] hits = Physics2D.OverlapCircleAll(
-            standCheck.position,
-            standCheckRadius,
+        float standingHeight = standingColliderSize.y;
+        float crawlHeight = standingHeight * crawlColliderHeightRatio;
+        float extraHeight = standingHeight - crawlHeight;
+
+        Vector2 checkCenter = (Vector2)transform.position
+            + standingColliderOffset
+            + Vector2.up * (standingColliderSize.y * 0.5f);
+
+        checkCenter.y -= extraHeight * 0.5f;
+
+        Vector2 checkSize = new Vector2(
+            Mathf.Max(0.01f, standingColliderSize.x - 0.02f),
+            Mathf.Max(0.01f, extraHeight - 0.02f)
+        );
+
+        Collider2D[] hits = Physics2D.OverlapBoxAll(
+            checkCenter,
+            checkSize,
+            0f,
             standingClearanceLayers
         );
 
@@ -293,107 +438,193 @@ public class LLPlayerController : MonoBehaviour
             if (hit == null || hit.isTrigger)
                 continue;
 
-            // Ignore the player's own colliders.
-            if (hit.attachedRigidbody == rb ||
-                hit.transform == transform ||
-                hit.transform.IsChildOf(transform))
-            {
+            if (hit == bodyCollider || hit.attachedRigidbody == rb)
                 continue;
-            }
 
-            // An obstacle is occupying the standing clearance area.
             return false;
         }
 
-        // Nothing is blocking the player from standing.
         return true;
     }
 
-
-    private void UpdateFacing()
+    private void ApplyLegSprites()
     {
-        if (horizontalInput > 0f)
-            facingRight = true;
-        else if (horizontalInput < 0f)
-            facingRight = false;
-    }
+        if (leftLegSprite != null)
+            leftLegSprite.SetActive(hasLegs);
 
-    private void UpdateFacingDirection()
-    {
-        if (visualTransform == null)
-            return;
-        Vector3 scale = visualTransform.localScale;
-
-        if (isCrawling && rotateVisualWhenCrawling)
-        {
-            // While crawling, flip vertically to account for
-            // the visual model's rotation.
-            scale.x = Mathf.Abs(scale.x);
-            scale.y = facingRight
-                ? Mathf.Abs(scale.y)
-                : -Mathf.Abs(scale.y);
-        }
-        else
-        {
-            // While walking, flip horizontally.
-            scale.x = facingRight
-                ? Mathf.Abs(scale.x)
-                : -Mathf.Abs(scale.x);
-
-            scale.y = Mathf.Abs(scale.y);
-        }
-
-        visualTransform.localScale = scale;
-    }
-
-
-
-
-    private void UpdateAnimation()
-    {
-        if (animator == null)
-            return;
-
-        if (!string.IsNullOrEmpty(speedParameter))
-        {
-            animator.SetFloat(
-                speedParameter,
-                Mathf.Abs(hasLegs ? horizontalInput : 0f)
-            );
-        }
-
-        if (!string.IsNullOrEmpty(groundedParameter))
-            animator.SetBool(groundedParameter, isGrounded);
-
-        if (!string.IsNullOrEmpty(crawlingParameter))
-            animator.SetBool(crawlingParameter, isCrawling);
-
-        if (!string.IsNullOrEmpty(hasLegsParameter))
-            animator.SetBool(hasLegsParameter, hasLegs);
-
-        if (!string.IsNullOrEmpty(facingParameter))
-        {
-            animator.SetFloat(
-                facingParameter,
-                facingRight ? 1f : -1f
-            );
-        }
+        if (rightLegSprite != null)
+            rightLegSprite.SetActive(hasLegs);
     }
 
     public void SetLegsEnabled(bool enabled)
     {
-        hasLegs = enabled;
+        if (hasLegs == enabled)
+            return;
 
-        if (legsObject != null &&
-            legsObject.activeSelf != enabled)
+        hasLegs = enabled;
+        isLegless = !enabled;
+
+        ApplyLegSprites();
+        jumpBufferCounter = 0f;
+
+        if (isJumpStartup)
+            CancelJumpStartup();
+
+        if (fallOverRoutine != null)
         {
-            legsObject.SetActive(enabled);
+            StopCoroutine(fallOverRoutine);
+            fallOverRoutine = null;
         }
 
-        if (!hasLegs)
-            jumpBufferCounter = 0f;
+        if (standUpRoutine != null)
+        {
+            StopCoroutine(standUpRoutine);
+            standUpRoutine = null;
+        }
 
-        UpdateCrawlState(false);
+        if (isLegless)
+        {
+            isCrawling = false;
+            hasLaunchedJump = false;
+
+            bodyCollider.direction = CapsuleDirection2D.Horizontal;
+            bodyCollider.size = new Vector2(
+                standingColliderSize.y,
+                standingColliderSize.x
+            );
+            bodyCollider.offset = standingColliderOffset;
+
+            if (visualRoot != null)
+                fallOverRoutine = StartCoroutine(FallOver());
+        }
+        else
+        {
+            bodyCollider.direction = standingColliderDirection;
+            bodyCollider.size = standingColliderSize;
+            bodyCollider.offset = standingColliderOffset;
+
+            if (visualRoot != null)
+            {
+                visualRoot.localRotation = originalVisualRotation;
+                visualRoot.localPosition = originalVisualLocalPosition;
+            }
+
+            UpdateCrawlState(false);
+            UpdateFacingDirection();
+        }
+
+        UpdateAnimatorParameters();
+    }
+
+    private Vector3 GetLeglessOffsetWorld()
+    {
+        return transform.TransformVector(
+            new Vector3(
+                leglessVisualOffsetX,
+                leglessVisualOffsetY,
+                0f
+            )
+        );
+    }
+
+    private IEnumerator FallOver()
+    {
+        Quaternion startRotation = visualRoot.localRotation;
+
+        float direction = horizontalInput < 0f ? 1f : -1f;
+
+        Quaternion targetRotation =
+            originalVisualRotation *
+            Quaternion.Euler(0f, 0f, direction * 90f);
+
+        Vector2 colliderCenter = bodyCollider.offset;
+
+        Vector3 pivotWorld = transform.TransformPoint(colliderCenter);
+        Vector3 baseVisualPosition =
+            transform.TransformPoint(originalVisualLocalPosition);
+
+        Vector3 visualOffset = baseVisualPosition - pivotWorld;
+
+        float elapsed = 0f;
+
+        while (elapsed < fallOverDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            float t = Mathf.Clamp01(elapsed / fallOverDuration);
+            t = t * t * (3f - 2f * t);
+
+            visualRoot.localRotation = Quaternion.Slerp(
+                startRotation,
+                targetRotation,
+                t
+            );
+
+            Vector3 rotatedOffset =
+                Quaternion.AngleAxis(
+                    direction * 90f * t,
+                    transform.forward
+                ) * visualOffset;
+
+            visualRoot.position =
+                pivotWorld +
+                rotatedOffset +
+                Vector3.down * (0.2f * t) +
+                GetLeglessOffsetWorld() * t;
+
+            yield return null;
+        }
+
+        visualRoot.localRotation = targetRotation;
+
+        Vector3 finalOffset =
+            Quaternion.AngleAxis(
+                direction * 90f,
+                transform.forward
+            ) * visualOffset;
+
+        visualRoot.position =
+            pivotWorld +
+            finalOffset +
+            Vector3.down * 0.20f +
+            GetLeglessOffsetWorld();
+
+        fallOverRoutine = null;
+    }
+
+    private IEnumerator StandUp()
+    {
+        Quaternion startRotation = visualRoot.localRotation;
+        Vector3 startPosition = visualRoot.localPosition;
+
+        float elapsed = 0f;
+
+        while (elapsed < fallOverDuration)
+        {
+            elapsed += Time.deltaTime;
+
+            float t = Mathf.Clamp01(elapsed / fallOverDuration);
+            t = t * t * (3f - 2f * t);
+
+            visualRoot.localRotation = Quaternion.Slerp(
+                startRotation,
+                originalVisualRotation,
+                t
+            );
+
+            visualRoot.localPosition = Vector3.Lerp(
+                startPosition,
+                originalVisualLocalPosition,
+                t
+            );
+
+            yield return null;
+        }
+
+        visualRoot.localRotation = originalVisualRotation;
+        visualRoot.localPosition = originalVisualLocalPosition;
+
+        standUpRoutine = null;
     }
 
     public void ToggleLegs()
@@ -405,50 +636,20 @@ public class LLPlayerController : MonoBehaviour
     {
         if (groundCheck != null)
         {
-            Gizmos.color = isGrounded
-                ? Color.green
-                : Color.yellow;
-
+            Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(
                 groundCheck.position,
                 groundCheckRadius
             );
         }
 
-        if (bodyCollider != null &&
-            hitboxTransform != null)
+        if (standCheck != null)
         {
-            Gizmos.color = Color.cyan;
-
-            Transform parent = hitboxTransform.parent;
-
-            Vector3 position = parent != null
-                ? parent.TransformPoint(standingHitboxOffset)
-                : standingHitboxOffset;
-
-            Quaternion rotation = parent != null
-                ? parent.rotation
-                : Quaternion.identity;
-
-            Gizmos.matrix = Matrix4x4.TRS(
-                position,
-                rotation,
-                Vector3.one
-            );
-
-            Vector3 scaledSize = new Vector3(
-                bodyCollider.size.x *
-                    Mathf.Abs(hitboxTransform.lossyScale.x),
-                bodyCollider.size.y *
-                    Mathf.Abs(hitboxTransform.lossyScale.y),
-                1f
-            );
-
-            Gizmos.DrawWireCube(
-                Vector3.zero,
-                scaledSize
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(
+                standCheck.position,
+                standCheckRadius
             );
         }
     }
 }
-
