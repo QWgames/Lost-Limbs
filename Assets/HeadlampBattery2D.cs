@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class HeadlampBattery2D : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class HeadlampBattery2D : MonoBehaviour
 
     [Header("Controls")]
     [SerializeField] private Key toggleKey = Key.F;
+
+    [Header("Batter Bar")]
+    public Image BatteryBar;
 
     private float battery;
     private float rechargeDelayTimer;
@@ -102,6 +106,12 @@ public class HeadlampBattery2D : MonoBehaviour
         }
 
         UpdateLightAnimation();
+        UpdateBatteryBar();
+    }
+
+    private void UpdateBatteryBar()
+    {
+        BatteryBar.fillAmount = battery / batteryLife;
     }
 
     private void ToggleLamp()
