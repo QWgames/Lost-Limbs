@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,8 +13,7 @@ public class LLPlayerController : MonoBehaviour
     [SerializeField, Min(0f)] private float gravityScale = 3f;
 
     [Header("Jump Animation")]
-    [SerializeField, Min(0f)]
-    private float jumpStartupDelay = 0.25f;
+    [SerializeField, Min(0f)] private float jumpStartupDelay = 0.25f;
 
     [Header("Ground Detection")]
     [SerializeField] private Transform groundCheck;
@@ -25,7 +23,8 @@ public class LLPlayerController : MonoBehaviour
 
     [Header("Standing Clearance")]
     [SerializeField] private Transform standCheck;
-    [SerializeField, Min(0.01f)] private float standCheckRadius = 0.15f;
+    [SerializeField] private Vector2 standCheckSize = new Vector2(0.6f, 0.4f);
+    [SerializeField] private Vector2 standCheckOffset = new Vector2(0f, 0.5f);
     [SerializeField] private LayerMask standingClearanceLayers;
 
     [Header("Leg Sprites")]
@@ -42,9 +41,19 @@ public class LLPlayerController : MonoBehaviour
     [SerializeField, Min(0.05f)] private float fallOverDuration = 0.25f;
     [SerializeField] private Transform facingRoot;
 
-    [Header("Legless Visual Offset")]
-    [SerializeField] private float leglessVisualOffsetX = 0f;
-    [SerializeField] private float leglessVisualOffsetY = 0f;
+    [Header("Legless Visual Offset — Facing Right")]
+    [Tooltip("Horizontal offset when the legless character faces right.")]
+    [SerializeField] private float rightFacingOffsetX = 0f;
+
+    [Tooltip("Vertical offset when the legless character faces right.")]
+    [SerializeField] private float rightFacingOffsetY = 0f;
+
+    [Header("Legless Visual Offset — Facing Left")]
+    [Tooltip("Horizontal offset when the legless character faces left.")]
+    [SerializeField] private float leftFacingLeglessOffsetX = 0f;
+
+    [Tooltip("Vertical offset when the legless character faces left.")]
+    [SerializeField] private float leftFacingLeglessOffsetY = 0f;
 
     [Header("Facing")]
     [SerializeField] private float leftFacingOffsetX = 0f;
@@ -59,6 +68,7 @@ public class LLPlayerController : MonoBehaviour
 
     private Quaternion originalVisualRotation;
     private Vector3 originalVisualLocalPosition;
+    private Vector3 originalVisualLocalScale;
 
     private Coroutine fallOverRoutine;
     private Coroutine standUpRoutine;
@@ -71,22 +81,18 @@ public class LLPlayerController : MonoBehaviour
     private bool isCrawling;
     private bool hasLegs;
     private bool isLegless;
-
     private bool isJumpStartup;
     private bool jumpReadyToLaunch;
     private bool hasLaunchedJump;
 
     private int facingDirection = 1;
+    private float leglessRotationDirection = -1f;
 
     public bool IsGrounded => isGrounded;
     public bool IsCrawling => isCrawling;
     public bool HasLegs => hasLegs;
 
-    // The climbing controller sets this while it owns player movement.
-    // Normal movement must not overwrite climbing velocity.
     public bool ExternalMovementControl { get; set; }
-
-    // Swimming can control movement independently of climbing.
     public bool SwimmingMovementControl { get; set; }
 
     private void Awake()
@@ -108,6 +114,7 @@ public class LLPlayerController : MonoBehaviour
         {
             originalVisualRotation = visualRoot.localRotation;
             originalVisualLocalPosition = visualRoot.localPosition;
+            originalVisualLocalScale = visualRoot.localScale;
         }
 
         hasLegs = startsWithLegs;
@@ -116,6 +123,14 @@ public class LLPlayerController : MonoBehaviour
         ApplyLegSprites();
         UpdateCrawlState(false);
         UpdateFacingDirection();
+
+        if (isLegless && visualRoot != null)
+        {
+            leglessRotationDirection = facingDirection < 0 ? 1f : -1f;
+            visualRoot.localPosition = GetLeglessTargetLocalPosition();
+            visualRoot.localRotation = GetLeglessTargetLocalRotation();
+        }
+
         UpdateAnimatorParameters();
     }
 
@@ -123,9 +138,7 @@ public class LLPlayerController : MonoBehaviour
     {
         Keyboard keyboard = Keyboard.current;
 
-        // While climbing controls movement, do not collect normal movement
-        // inputs. Keep visual animation and state updates running.
-        if (ExternalMovementControl)
+        if (ExternalMovementControl || SwimmingMovementControl)
         {
             horizontalInput = 0f;
             jumpBufferCounter = 0f;
@@ -137,19 +150,6 @@ public class LLPlayerController : MonoBehaviour
             return;
         }
 
-        if (SwimmingMovementControl)
-        {
-            horizontalInput = 0f;
-            jumpBufferCounter = 0f;
-
-            if (isJumpStartup)
-                CancelJumpStartup();
-
-            UpdateAnimatorParameters();
-            return;
-        }
-
-        // No keyboard available: clear input without affecting physics.
         if (keyboard == null)
         {
             horizontalInput = 0f;
@@ -157,8 +157,6 @@ public class LLPlayerController : MonoBehaviour
             return;
         }
 
-        // Legless characters cannot walk, crawl, or jump through keyboard
-        // movement. Their Rigidbody physics and climbing remain active.
         horizontalInput = 0f;
 
         if (hasLegs && !isLegless)
@@ -170,14 +168,13 @@ public class LLPlayerController : MonoBehaviour
                 horizontalInput += 1f;
         }
 
-        if (horizontalInput < 0f)
-            facingDirection = -1;
-        else if (horizontalInput > 0f)
-            facingDirection = 1;
+        if (keyboard.aKey.isPressed)
+            SetFacingDirection(-1);
+        else if (keyboard.dKey.isPressed)
+            SetFacingDirection(1);
 
         UpdateFacingDirection();
 
-        // Crawling only applies while the character has legs.
         if (hasLegs && !isLegless)
             UpdateCrawlState(keyboard.leftShiftKey.isPressed);
 
@@ -221,6 +218,43 @@ public class LLPlayerController : MonoBehaviour
         UpdateAnimatorParameters();
     }
 
+    private void LateUpdate()
+    {
+        if (!isLegless || visualRoot == null)
+            return;
+
+        if (fallOverRoutine == null)
+        {
+            visualRoot.localPosition = GetLeglessTargetLocalPosition();
+            visualRoot.localRotation = GetLeglessTargetLocalRotation();
+        }
+    }
+
+    private void SetFacingDirection(int direction)
+    {
+        if (facingDirection == direction)
+            return;
+
+        facingDirection = direction;
+
+        if (isLegless)
+        {
+            leglessRotationDirection = facingDirection < 0 ? 1f : -1f;
+
+            if (fallOverRoutine == null && visualRoot != null)
+            {
+                visualRoot.localPosition = GetLeglessTargetLocalPosition();
+                visualRoot.localRotation = GetLeglessTargetLocalRotation();
+            }
+        }
+    }
+
+    private Quaternion GetLeglessTargetLocalRotation()
+    {
+        return originalVisualRotation *
+               Quaternion.Euler(0f, 0f, leglessRotationDirection * 90f);
+    }
+
     private void BeginJumpStartup()
     {
         isJumpStartup = true;
@@ -255,13 +289,17 @@ public class LLPlayerController : MonoBehaviour
         if (visualRoot == null)
             return;
 
-        Vector3 scale = visualRoot.localScale;
-        scale.x = Mathf.Abs(scale.x) * facingDirection;
-        visualRoot.localScale = scale;
+        Vector3 scale = originalVisualLocalScale;
 
-        // The fall-over animation owns the visual position while legless.
         if (isLegless)
+        {
+            scale.x = Mathf.Abs(originalVisualLocalScale.x);
+            visualRoot.localScale = scale;
             return;
+        }
+
+        scale.x = Mathf.Abs(originalVisualLocalScale.x) * facingDirection;
+        visualRoot.localScale = scale;
 
         Vector3 position = originalVisualLocalPosition;
 
@@ -269,21 +307,14 @@ public class LLPlayerController : MonoBehaviour
             position.x += leftFacingOffsetX;
 
         visualRoot.localPosition = position;
+        visualRoot.localRotation = originalVisualRotation;
     }
 
     private void FixedUpdate()
     {
         CheckGrounded();
 
-        // Do not write to Rigidbody velocity while the climbing controller
-        // owns movement. Gravity, joints, collisions, and physics still work.
-        if (ExternalMovementControl)
-        {
-            UpdateAnimatorParameters();
-            return;
-        }
-
-        if (SwimmingMovementControl)
+        if (ExternalMovementControl || SwimmingMovementControl)
         {
             UpdateAnimatorParameters();
             return;
@@ -296,9 +327,6 @@ public class LLPlayerController : MonoBehaviour
             float speed = isCrawling ? crawlSpeed : walkSpeed;
             velocity.x = horizontalInput * speed;
         }
-
-        // Crucially, when legless, do not set velocity.x to zero.
-        // Existing momentum and climbing launch velocity are preserved.
 
         if (jumpReadyToLaunch)
         {
@@ -314,7 +342,6 @@ public class LLPlayerController : MonoBehaviour
                 );
 
                 velocity.y = jumpVelocity;
-
                 isGrounded = false;
                 hasLaunchedJump = true;
             }
@@ -324,9 +351,7 @@ public class LLPlayerController : MonoBehaviour
             jumpStartupCounter = 0f;
         }
 
-        if (hasLaunchedJump &&
-            isGrounded &&
-            velocity.y <= 0f)
+        if (hasLaunchedJump && isGrounded && velocity.y <= 0f)
         {
             hasLaunchedJump = false;
 
@@ -335,7 +360,6 @@ public class LLPlayerController : MonoBehaviour
         }
 
         rb.linearVelocity = velocity;
-
         UpdateAnimatorParameters();
     }
 
@@ -345,7 +369,7 @@ public class LLPlayerController : MonoBehaviour
             return;
 
         float animationSpeed = ExternalMovementControl
-            ? rb != null ? rb.linearVelocity.magnitude : 0f
+            ? (rb != null ? rb.linearVelocity.magnitude : 0f)
             : Mathf.Abs(horizontalInput) *
               (isCrawling ? crawlSpeed : walkSpeed);
 
@@ -353,11 +377,7 @@ public class LLPlayerController : MonoBehaviour
         animator.SetBool("IsCrouching", isCrawling);
         animator.SetBool("IsLegless", isLegless);
         animator.SetBool("IsGrounded", isGrounded);
-
-        animator.SetBool(
-            "IsJumping",
-            isJumpStartup || hasLaunchedJump
-        );
+        animator.SetBool("IsJumping", isJumpStartup || hasLaunchedJump);
     }
 
     private void CheckGrounded()
@@ -404,12 +424,10 @@ public class LLPlayerController : MonoBehaviour
         if (isCrawling)
         {
             bodyCollider.direction = CapsuleDirection2D.Horizontal;
-
             bodyCollider.size = new Vector2(
                 standingColliderSize.y,
                 standingColliderSize.x
             );
-
             bodyCollider.offset = standingColliderOffset;
             jumpBufferCounter = 0f;
         }
@@ -429,27 +447,13 @@ public class LLPlayerController : MonoBehaviour
 
     private bool CanStandUp()
     {
-        if (standCheck == null)
-            return true;
-
-        float standingHeight = standingColliderSize.y;
-        float crawlHeight = standingHeight * crawlColliderHeightRatio;
-        float extraHeight = standingHeight - crawlHeight;
-
-        Vector2 checkCenter = (Vector2)transform.position
-            + standingColliderOffset
-            + Vector2.up * (standingColliderSize.y * 0.5f);
-
-        checkCenter.y -= extraHeight * 0.5f;
-
-        Vector2 checkSize = new Vector2(
-            Mathf.Max(0.01f, standingColliderSize.x - 0.02f),
-            Mathf.Max(0.01f, extraHeight - 0.02f)
-        );
+        Vector2 checkCenter = standCheck != null
+            ? (Vector2)standCheck.position + standCheckOffset
+            : (Vector2)transform.position + standCheckOffset;
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(
             checkCenter,
-            checkSize,
+            standCheckSize,
             0f,
             standingClearanceLayers
         );
@@ -459,7 +463,7 @@ public class LLPlayerController : MonoBehaviour
             if (hit == null || hit.isTrigger)
                 continue;
 
-            if (hit == bodyCollider || hit.attachedRigidbody == rb)
+            if (hit.attachedRigidbody == rb)
                 continue;
 
             return false;
@@ -515,6 +519,8 @@ public class LLPlayerController : MonoBehaviour
             );
             bodyCollider.offset = standingColliderOffset;
 
+            leglessRotationDirection = facingDirection < 0 ? 1f : -1f;
+
             if (visualRoot != null)
                 fallOverRoutine = StartCoroutine(FallOver());
         }
@@ -537,34 +543,35 @@ public class LLPlayerController : MonoBehaviour
         UpdateAnimatorParameters();
     }
 
-    private Vector3 GetLeglessOffsetWorld()
+    private Vector3 GetLeglessTargetLocalPosition()
     {
-        return transform.TransformVector(
-            new Vector3(
-                leglessVisualOffsetX,
-                leglessVisualOffsetY,
-                0f
-            )
+        float offsetX;
+        float offsetY;
+
+        if (facingDirection < 0)
+        {
+            offsetX = leftFacingLeglessOffsetX;
+            offsetY = leftFacingLeglessOffsetY;
+        }
+        else
+        {
+            offsetX = rightFacingOffsetX;
+            offsetY = rightFacingOffsetY;
+        }
+
+        return originalVisualLocalPosition + new Vector3(
+            offsetX,
+            offsetY,
+            0f
         );
     }
 
     private IEnumerator FallOver()
     {
+        Vector3 startPosition = visualRoot.localPosition;
         Quaternion startRotation = visualRoot.localRotation;
 
-        float direction = horizontalInput < 0f ? 1f : -1f;
-
-        Quaternion targetRotation =
-            originalVisualRotation *
-            Quaternion.Euler(0f, 0f, direction * 90f);
-
-        Vector2 colliderCenter = bodyCollider.offset;
-
-        Vector3 pivotWorld = transform.TransformPoint(colliderCenter);
-        Vector3 baseVisualPosition =
-            transform.TransformPoint(originalVisualLocalPosition);
-
-        Vector3 visualOffset = baseVisualPosition - pivotWorld;
+        leglessRotationDirection = facingDirection < 0 ? 1f : -1f;
 
         float elapsed = 0f;
 
@@ -575,48 +582,34 @@ public class LLPlayerController : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / fallOverDuration);
             t = t * t * (3f - 2f * t);
 
+            Vector3 targetPosition = GetLeglessTargetLocalPosition();
+            Quaternion targetRotation = GetLeglessTargetLocalRotation();
+
+            visualRoot.localPosition = Vector3.Lerp(
+                startPosition,
+                targetPosition,
+                t
+            );
+
             visualRoot.localRotation = Quaternion.Slerp(
                 startRotation,
                 targetRotation,
                 t
             );
 
-            Vector3 rotatedOffset =
-                Quaternion.AngleAxis(
-                    direction * 90f * t,
-                    transform.forward
-                ) * visualOffset;
-
-            visualRoot.position =
-                pivotWorld +
-                rotatedOffset +
-                Vector3.down * (0.2f * t) +
-                GetLeglessOffsetWorld() * t;
-
             yield return null;
         }
 
-        visualRoot.localRotation = targetRotation;
-
-        Vector3 finalOffset =
-            Quaternion.AngleAxis(
-                direction * 90f,
-                transform.forward
-            ) * visualOffset;
-
-        visualRoot.position =
-            pivotWorld +
-            finalOffset +
-            Vector3.down * 0.20f +
-            GetLeglessOffsetWorld();
+        visualRoot.localPosition = GetLeglessTargetLocalPosition();
+        visualRoot.localRotation = GetLeglessTargetLocalRotation();
 
         fallOverRoutine = null;
     }
 
     private IEnumerator StandUp()
     {
-        Quaternion startRotation = visualRoot.localRotation;
         Vector3 startPosition = visualRoot.localPosition;
+        Quaternion startRotation = visualRoot.localRotation;
 
         float elapsed = 0f;
 
@@ -664,13 +657,13 @@ public class LLPlayerController : MonoBehaviour
             );
         }
 
-        if (standCheck != null)
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(
-                standCheck.position,
-                standCheckRadius
-            );
-        }
+        Vector2 standCenter = standCheck != null
+            ? (Vector2)standCheck.position + standCheckOffset
+            : (Vector2)transform.position + standCheckOffset;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(standCenter, standCheckSize);
     }
 }
+
+
