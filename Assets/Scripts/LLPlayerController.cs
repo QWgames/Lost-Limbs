@@ -86,6 +86,9 @@ public class LLPlayerController : MonoBehaviour
     // Normal movement must not overwrite climbing velocity.
     public bool ExternalMovementControl { get; set; }
 
+    // Swimming can control movement independently of climbing.
+    public bool SwimmingMovementControl { get; set; }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -123,6 +126,18 @@ public class LLPlayerController : MonoBehaviour
         // While climbing controls movement, do not collect normal movement
         // inputs. Keep visual animation and state updates running.
         if (ExternalMovementControl)
+        {
+            horizontalInput = 0f;
+            jumpBufferCounter = 0f;
+
+            if (isJumpStartup)
+                CancelJumpStartup();
+
+            UpdateAnimatorParameters();
+            return;
+        }
+
+        if (SwimmingMovementControl)
         {
             horizontalInput = 0f;
             jumpBufferCounter = 0f;
@@ -263,6 +278,12 @@ public class LLPlayerController : MonoBehaviour
         // Do not write to Rigidbody velocity while the climbing controller
         // owns movement. Gravity, joints, collisions, and physics still work.
         if (ExternalMovementControl)
+        {
+            UpdateAnimatorParameters();
+            return;
+        }
+
+        if (SwimmingMovementControl)
         {
             UpdateAnimatorParameters();
             return;
