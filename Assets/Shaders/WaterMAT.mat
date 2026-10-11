@@ -51,8 +51,8 @@ Material:
     - _CausticScale: 10
     - _CausticStrength: 1
     - _DistortionOffsetSpeed: 1
-    - _DistortionScale: 30
-    - _DistortionStrength: 0.0025
+    - _DistortionScale: 21.1
+    - _DistortionStrength: 0.0014
     - _LineLength: 0.978
     - _WaveCount: 0.75
     - _WaveDirection: 1

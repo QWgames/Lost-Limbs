@@ -40,6 +40,8 @@ public class LLPlayerController : MonoBehaviour
     [SerializeField] private float crawlingLegsRotation = 0f;
 
     [Header("Standing Clearance")]
+    [SerializeField] private Transform standCheck;
+    [SerializeField, MinAttribute(0.01f)] private float standCheckRadius = 0.15f;
     [SerializeField] private LayerMask standingClearanceLayers = ~0;
 
     [Header("Animation (Optional)")]
@@ -272,50 +274,26 @@ public class LLPlayerController : MonoBehaviour
             jumpBufferCounter = 0f;
     }
 
+
     private bool CanStandUp()
     {
-        if (bodyCollider == null || hitboxTransform == null)
+        // If no check is assigned, allow standing.
+        if (standCheck == null)
             return true;
 
-        // Remember the top of the current crawling hitbox.
-        float crawlingTop = bodyCollider.bounds.max.y;
-
-        Vector3 originalPosition = hitboxTransform.localPosition;
-        Quaternion originalRotation = hitboxTransform.localRotation;
-
-        // Temporarily set the collider to its standing pose.
-        hitboxTransform.localPosition = standingHitboxOffset;
-        hitboxTransform.localRotation = Quaternion.identity;
-
-        Physics2D.SyncTransforms();
-
-        Vector2 center = bodyCollider.transform.TransformPoint(
-            bodyCollider.offset
-        );
-
-        Vector2 size = Vector2.Scale(
-            bodyCollider.size,
-            new Vector2(
-                Mathf.Abs(bodyCollider.transform.lossyScale.x),
-                Mathf.Abs(bodyCollider.transform.lossyScale.y)
-            )
-        );
-
-        Collider2D[] hits = Physics2D.OverlapCapsuleAll(
-            center,
-            size,
-            bodyCollider.direction,
-            bodyCollider.transform.eulerAngles.z,
+        // Detect colliders around the StandCheck point.
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            standCheck.position,
+            standCheckRadius,
             standingClearanceLayers
         );
-
-        bool blocked = false;
 
         foreach (Collider2D hit in hits)
         {
             if (hit == null || hit.isTrigger)
                 continue;
 
+            // Ignore the player's own colliders.
             if (hit.attachedRigidbody == rb ||
                 hit.transform == transform ||
                 hit.transform.IsChildOf(transform))
@@ -323,23 +301,14 @@ public class LLPlayerController : MonoBehaviour
                 continue;
             }
 
-            // Ignore the floor and objects that don't extend into
-            // the additional space required to stand.
-            if (hit.bounds.max.y <= crawlingTop + 0.02f)
-                continue;
-
-            blocked = true;
-            break;
+            // An obstacle is occupying the standing clearance area.
+            return false;
         }
 
-        // Restore the crawling hitbox.
-        hitboxTransform.localPosition = originalPosition;
-        hitboxTransform.localRotation = originalRotation;
-
-        Physics2D.SyncTransforms();
-
-        return !blocked;
+        // Nothing is blocking the player from standing.
+        return true;
     }
+
 
     private void UpdateFacing()
     {
@@ -353,18 +322,32 @@ public class LLPlayerController : MonoBehaviour
     {
         if (visualTransform == null)
             return;
-
-        // Preserve the original scale magnitudes so that facing
-        // changes only the horizontal sign.
         Vector3 scale = visualTransform.localScale;
 
-        if (facingRight)
+        if (isCrawling && rotateVisualWhenCrawling)
+        {
+            // While crawling, flip vertically to account for
+            // the visual model's rotation.
             scale.x = Mathf.Abs(scale.x);
+            scale.y = facingRight
+                ? Mathf.Abs(scale.y)
+                : -Mathf.Abs(scale.y);
+        }
         else
-            scale.x = -Mathf.Abs(scale.x);
+        {
+            // While walking, flip horizontally.
+            scale.x = facingRight
+                ? Mathf.Abs(scale.x)
+                : -Mathf.Abs(scale.x);
+
+            scale.y = Mathf.Abs(scale.y);
+        }
 
         visualTransform.localScale = scale;
     }
+
+
+
 
     private void UpdateAnimation()
     {
