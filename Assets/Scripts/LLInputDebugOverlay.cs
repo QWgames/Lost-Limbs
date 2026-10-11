@@ -13,6 +13,9 @@ public class LLInputDebugOverlay : MonoBehaviour
     [SerializeField] private float keySize = 42f;
     [SerializeField] private float spacing = 4f;
 
+    [Header("Debug Controls")]
+    [SerializeField] private LLDebugControls debugControls;
+
     private GUIStyle keyStyle;
     private GUIStyle titleStyle;
     private GUIStyle statusStyle;
@@ -41,7 +44,7 @@ public class LLInputDebugOverlay : MonoBehaviour
 
         // Background panel.
         float panelWidth = keySize * 3f + spacing * 2f + 24f;
-        float panelHeight = keySize * 3f + spacing * 3f + 85f;
+        float panelHeight = keySize * 3f + spacing * 3f + 90f;
 
         GUI.Box(
             new Rect(x, y, panelWidth, panelHeight),
@@ -91,10 +94,14 @@ public class LLInputDebugOverlay : MonoBehaviour
         contentY += keySize + spacing + 5f;
 
         GUI.Label(
-            new Rect(contentX, contentY, panelWidth - 24f, 20f),
-            "Toggle with F3",
+            new Rect(contentX, contentY, panelWidth - 24f, 40f),
+            "Toggle with F3\nReset with F5",
             statusStyle
         );
+
+       
+
+        
     }
 
 

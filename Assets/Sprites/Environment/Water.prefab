@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2882450357729711488}
   - component: {fileID: 2985761296233275877}
   - component: {fileID: 5376772765261164497}
-  - component: {fileID: 7109151947501394622}
   m_Layer: 4
   m_Name: Water
   m_TagString: Untagged
@@ -188,23 +187,7 @@ SortingGroup:
   m_GameObject: {fileID: 4986646844010748491}
   m_Enabled: 1
   m_SortingLayerID: 1885353095
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
---- !u!114 &7109151947501394622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4986646844010748491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f016246dfbd954f429b3de1420fa5ec4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WaterTriggerHandler
-  _waterMask:
-    serializedVersion: 2
-    m_Bits: 8
-  _splashParticles: {fileID: 0}

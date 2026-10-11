@@ -44,17 +44,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: SortingTexture
-    uniqueID: 1885353095
-    locked: 0
   - name: BG
     uniqueID: 3242112109
     locked: 0
-  - name: Ground
-    uniqueID: 2648485171
-    locked: 0
   - name: player
     uniqueID: 1398540829
+    locked: 0
+  - name: SortingTexture
+    uniqueID: 1885353095
+    locked: 0
+  - name: Ground
+    uniqueID: 2648485171
     locked: 0
   m_RenderingLayers:
   - Default
