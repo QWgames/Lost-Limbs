@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CapsuleCollider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class LLPlayerController : MonoBehaviour
 {
     [Header("Movement")]
@@ -58,6 +59,43 @@ public class LLPlayerController : MonoBehaviour
     [Header("Facing")]
     [SerializeField] private float leftFacingOffsetX = 0f;
 
+    // =========================================================
+    // AUDIO
+    // =========================================================
+
+    [Header("Audio Source")]
+    [SerializeField] private AudioSource audioSource;
+
+    [Header("Movement Sound Effects")]
+    [SerializeField] private AudioClip walkSFX;
+    [SerializeField] private AudioClip jumpSFX;
+    [SerializeField] private AudioClip crouchSFX;
+    [SerializeField] private AudioClip crawlSFX;
+    [SerializeField] private AudioClip landSFX;
+
+    [Header("Movement Sound Settings")]
+    [Tooltip("Delay between repeated walking sounds.")]
+    [SerializeField, Min(0.05f)] private float walkSFXInterval = 0.35f;
+
+    [Tooltip("Delay between repeated crawling sounds.")]
+    [SerializeField, Min(0.05f)] private float crawlSFXInterval = 0.5f;
+
+    [Tooltip("Minimum downward speed required to play the landing sound.")]
+    [SerializeField, Min(0f)] private float landingVelocityThreshold = 1f;
+
+    [Header("Randomized Audio Pitch")]
+    [Tooltip("Maximum random pitch variation. 0.08 means +/- 8 percent.")]
+    [SerializeField, Range(0f, 1f)] private float pitchVariation = 0.08f;
+
+    private float walkSFXTimer;
+    private float crawlSFXTimer;
+    private bool wasAirborne;
+    private bool wasMovingOnGround;
+
+    // =========================================================
+    // COMPONENTS AND STATE
+    // =========================================================
+
     private Rigidbody2D rb;
     private CapsuleCollider2D bodyCollider;
     private Animator animator;
@@ -78,6 +116,7 @@ public class LLPlayerController : MonoBehaviour
     private float jumpStartupCounter;
 
     private bool isGrounded;
+    private bool wasGrounded;
     private bool isCrawling;
     private bool hasLegs;
     private bool isLegless;
@@ -102,6 +141,9 @@ public class LLPlayerController : MonoBehaviour
 
         if (visualRoot != null)
             animator = visualRoot.GetComponent<Animator>();
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
 
         rb.gravityScale = gravityScale;
         rb.freezeRotation = true;
@@ -262,6 +304,8 @@ public class LLPlayerController : MonoBehaviour
         jumpStartupCounter = jumpStartupDelay;
         jumpBufferCounter = 0f;
 
+        PlaySFX(jumpSFX);
+
         if (animator != null)
         {
             animator.ResetTrigger("Jump");
@@ -312,7 +356,25 @@ public class LLPlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        wasGrounded = isGrounded;
+
         CheckGrounded();
+
+        // Detect landing after being airborne.
+        if (!wasGrounded && isGrounded)
+        {
+            if (rb.linearVelocity.y <= -landingVelocityThreshold &&
+                wasAirborne)
+            {
+                PlaySFX(landSFX);
+            }
+
+            wasAirborne = false;
+        }
+        else if (!isGrounded)
+        {
+            wasAirborne = true;
+        }
 
         if (ExternalMovementControl || SwimmingMovementControl)
         {
@@ -344,6 +406,7 @@ public class LLPlayerController : MonoBehaviour
                 velocity.y = jumpVelocity;
                 isGrounded = false;
                 hasLaunchedJump = true;
+                wasAirborne = true;
             }
 
             isJumpStartup = false;
@@ -360,7 +423,85 @@ public class LLPlayerController : MonoBehaviour
         }
 
         rb.linearVelocity = velocity;
+
+        UpdateMovementSFX();
         UpdateAnimatorParameters();
+    }
+
+    private void UpdateMovementSFX()
+    {
+        if (audioSource == null)
+            return;
+
+        bool canMoveNormally =
+            hasLegs &&
+            !isLegless &&
+            !ExternalMovementControl &&
+            !SwimmingMovementControl;
+
+        bool movingHorizontally = Mathf.Abs(horizontalInput) > 0.01f;
+        bool movingOnGround = isGrounded && movingHorizontally && canMoveNormally;
+
+        if (!movingOnGround)
+        {
+            walkSFXTimer = 0f;
+            crawlSFXTimer = 0f;
+            wasMovingOnGround = false;
+            return;
+        }
+
+        if (!wasMovingOnGround)
+        {
+            walkSFXTimer = 0f;
+            crawlSFXTimer = 0f;
+            wasMovingOnGround = true;
+        }
+
+        if (isCrawling)
+        {
+            walkSFXTimer = 0f;
+            crawlSFXTimer -= Time.fixedDeltaTime;
+
+            if (crawlSFXTimer <= 0f)
+            {
+                PlaySFX(crawlSFX);
+                crawlSFXTimer = crawlSFXInterval;
+            }
+        }
+        else
+        {
+            crawlSFXTimer = 0f;
+            walkSFXTimer -= Time.fixedDeltaTime;
+
+            if (walkSFXTimer <= 0f)
+            {
+                PlaySFX(walkSFX);
+                walkSFXTimer = walkSFXInterval;
+            }
+        }
+    }
+
+    private void PlaySFX(AudioClip clip)
+    {
+        if (audioSource == null || clip == null)
+            return;
+
+        // Save the AudioSource's original pitch.
+        float originalPitch = audioSource.pitch;
+
+        // Apply a new random pitch for this sound.
+        float randomizedPitch = Random.Range(
+            1f - pitchVariation,
+            1f + pitchVariation
+        );
+
+        audioSource.pitch = originalPitch * randomizedPitch;
+
+        // PlayOneShot uses the current AudioSource pitch.
+        audioSource.PlayOneShot(clip);
+
+        // Restore the original pitch for subsequent sounds.
+        audioSource.pitch = originalPitch;
     }
 
     private void UpdateAnimatorParameters()
@@ -423,6 +564,9 @@ public class LLPlayerController : MonoBehaviour
 
         if (isCrawling)
         {
+            // Play once when entering the crouched/crawling state.
+            PlaySFX(crouchSFX);
+
             bodyCollider.direction = CapsuleDirection2D.Horizontal;
             bodyCollider.size = new Vector2(
                 standingColliderSize.y,
@@ -430,12 +574,16 @@ public class LLPlayerController : MonoBehaviour
             );
             bodyCollider.offset = standingColliderOffset;
             jumpBufferCounter = 0f;
+
+            crawlSFXTimer = 0f;
         }
         else
         {
             bodyCollider.direction = standingColliderDirection;
             bodyCollider.size = standingColliderSize;
             bodyCollider.offset = standingColliderOffset;
+
+            walkSFXTimer = 0f;
 
             if (visualRoot != null)
             {
@@ -665,5 +813,4 @@ public class LLPlayerController : MonoBehaviour
         Gizmos.DrawWireCube(standCenter, standCheckSize);
     }
 }
-
 

@@ -5771,6 +5771,16 @@ MonoBehaviour:
   leftFacingLeglessOffsetX: 1.5
   leftFacingLeglessOffsetY: 3.5
   leftFacingOffsetX: 0
+  audioSource: {fileID: 1670789331574543026}
+  walkSFX: {fileID: 8300000, guid: 157ab910be628444e8e1d0f057d6d613, type: 3}
+  jumpSFX: {fileID: 0}
+  crouchSFX: {fileID: 8300000, guid: a17c3b8befba5a348ab3dd839e2b5cb2, type: 3}
+  crawlSFX: {fileID: 0}
+  landSFX: {fileID: 8300000, guid: 20edba861b81317449a7430c69c0bf2c, type: 3}
+  walkSFXInterval: 0.35
+  crawlSFXInterval: 0.5
+  landingVelocityThreshold: 1
+  pitchVariation: 0.08
 --- !u!70 &1330614908
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -10515,6 +10525,7 @@ GameObject:
   - component: {fileID: 1330614907}
   - component: {fileID: 1670789331574543024}
   - component: {fileID: 1670789331574543025}
+  - component: {fileID: 1670789331574543026}
   m_Layer: 3
   m_Name: Spelunker
   m_TagString: Untagged
@@ -10688,6 +10699,103 @@ MonoBehaviour:
   swimmingGravityScale: 0.35
   buoyancyForce: 5
   entryVelocityMultiplier: 0.6
+--- !u!82 &1670789331574543026
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569652437515242188}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1827118489485408477
 Transform:
   m_ObjectHideFlags: 0
